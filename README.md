@@ -15,3 +15,4 @@ Things to improve:
 * Add unit test 
 * Add e-mail confirmation
 * Multi-Factor Authentication
+* Better UI-UX
