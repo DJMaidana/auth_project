@@ -1,0 +1,8 @@
+/bin/
+/include/
+/lib/
+/lib64/
+/share/
+/My_project.code-workspace
+/Steps.txt
+/pyvenv.cfg
