@@ -8,3 +8,10 @@ hashes the password for future verification.
 * flask_login
 * flask_wtf
 * flask_sqlalchemy
+
+# Future Work
+
+Things to improve: 
+* Add unit test 
+* Add e-mail confirmation
+* Multi-Factor Authentication
