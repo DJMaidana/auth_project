@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body>
+
+<h1 style="text-align:center">Welcome to my page</h1>
+<div>
+    <form method="post">
+        {{ loginform.hidden_tag() }}
+        <p style="text-align: center">{{ loginform.username(placeholder="Username") }}</p>
+        <p style="text-align:center">{{ loginform.password(placeholder="Password") }}</p>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red; text-align: center">{{ message }}</p>
+            {% endfor %}
+        {% endif %} 
+        {% endwith %}  
+        <p style="text-align:center" >{{ loginform.submit() }}</p>
+        <p style="text-align:center">Don't have a user? <a href="{{ url_for('register') }}">Create one here</a></p>
+    </form>
+</div>
+
+</body>
+</html>

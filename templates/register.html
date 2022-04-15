@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body>
+<h1 style="text-align:center">Register your user</h1>
+<div>
+    <form method="post">
+        {{ registerform.hidden_tag() }}
+        <p style="text-align:center">{{ registerform.username(placeholder="Username") }}</p>
+        <p style="text-align:center">{{ registerform.password(placeholder="Password") }}</p>
+        <p style="text-align:center">{{ registerform.password2(placeholder="Repeat Password") }}</p>
+        <p style="text-align:center" >{{ registerform.register() }}</p>
+    </form>
+</div>
+
+</body>
+</html>
