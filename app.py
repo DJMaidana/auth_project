@@ -1,6 +1,6 @@
-from wsgiref.validate import validator
-from flask import Flask, render_template, request
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "mysecret_key"
@@ -10,5 +10,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 db.create_all()
+
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 import models, routes
