@@ -1,21 +1,28 @@
-from app import app, db
-from flask import request, render_template, flash, redirect, url_for
+from app import app, db, login_manager
+from flask import request, render_template, flash, redirect, url_for, abort
 from models import User
 from forms import RegisterForm,LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 
+@login_manager.user_loader
+def load_user(user_id):
+  return User.query.get(int(user_id))
 
 #login page, checks if there is a valid username in the DB, then checks credentials to enter homepage
 @app.route("/login", methods=["GET", "POST"])
 @app.route("/", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for("userhome"))
     loginform = LoginForm(csrf_enabled=False)
     if loginform.validate_on_submit():
         user = User.query.filter_by(username=loginform.username.data).first()
         if user != None:
             if user.verify_password(loginform.password.data):
-                return redirect(url_for("userhome"))
+                login_user(user)
+                next = request.args.get('next')
+                return redirect(next or url_for('userhome'))
             else:
                 flash(f"Incorrect password!")
         else:
@@ -36,5 +43,6 @@ def register():
 
 #user homepage
 @app.route("/home", methods=["GET", "POST"])
+@login_required
 def userhome():
     return render_template("home.html")
