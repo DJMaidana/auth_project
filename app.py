@@ -9,8 +9,6 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
-db.create_all()
-
 login_manager = LoginManager()
 login_manager.init_app(app)
 
